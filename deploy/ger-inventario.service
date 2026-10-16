@@ -1,0 +1,36 @@
+[Unit]
+Description=Inventario GER - interface web sobre a planilha do Google Sheets
+Documentation=file:///opt/ger-inventario/README.md
+# A rede precisa estar de pe: sem ela o app nao alcanca a API do Sheets.
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+# AJUSTE estas tres linhas para o PC do GER.
+User=ger
+WorkingDirectory=/opt/ger-inventario
+ExecStart=/usr/bin/npm run start
+
+Environment=NODE_ENV=production
+EnvironmentFile=/opt/ger-inventario/.env
+
+# Se a internet do laboratorio cair, o processo morre e volta sozinho.
+Restart=always
+RestartSec=10
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ger-inventario
+
+# O servico so escuta em 127.0.0.1 (ver o script "start" no package.json),
+# entao estas restricoes nao atrapalham nada e reduzem o estrago possivel.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/ger-inventario/.next
+
+[Install]
+WantedBy=multi-user.target

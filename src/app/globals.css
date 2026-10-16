@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Cores do GER, as mesmas dos posts (mkt/carrossel/.../tokens/theme.json):
+ * vermelho #A50303, preto #0E0E0E, creme #F4EEE6, creme-linha #EDE3D4,
+ * vinho #6E0505. Sem modo escuro: o app roda no PC do laboratorio.
+ */
+@layer base {
+  :root {
+    --background: 34 39% 93%; /* creme #F4EEE6 */
+    --foreground: 0 0% 17%; /* #2C2C2C */
+    --card: 38 50% 97%; /* creme claro #FBF8F3 */
+    --card-foreground: 0 0% 17%;
+    --popover: 38 50% 97%;
+    --popover-foreground: 0 0% 17%;
+    --primary: 0 96% 33%; /* vermelho GER #A50303 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 41% 88%; /* creme-linha #EDE3D4 */
+    --secondary-foreground: 0 0% 5%;
+    --muted: 36 41% 88%;
+    --muted-foreground: 35 10% 38%; /* #6B6358 */
+    --accent: 36 41% 88%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 91% 23%; /* vinho #6E0505 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 33% 82%; /* #E0D4C2 */
+    --input: 36 33% 82%;
+    --ring: 0 96% 33%;
+    --tinta: 0 0% 5%; /* preto GER #0E0E0E */
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background font-sans text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /*
+   * Fita de rotuladora: o codigo aparece como a etiqueta colada no objeto.
+   * Preto com digitos brancos, cantos quase retos e um recorte nas pontas.
+   */
+  .fita {
+    @apply inline-flex min-w-[4.4em] items-center justify-center rounded-[3px] bg-tinta px-2 py-0.5 font-display text-[0.95rem] font-extrabold leading-none tracking-[0.08em] text-white tabular-nums;
+    box-shadow:
+      inset 3px 0 0 -1px hsl(var(--background) / 0.18),
+      inset -3px 0 0 -1px hsl(var(--background) / 0.18);
+  }
+}

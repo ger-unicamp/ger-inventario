@@ -1,0 +1,22 @@
+node_modules/
+.next/
+out/
+build/
+
+.env
+.env.local
+*-service-account*.json
+credenciais*.json
+# Chave da service account baixada do Google Cloud ("<projeto>-<id>.json").
+# Qualquer .json na raiz que nao seja config do projeto fica de fora.
+/*.json
+!/package.json
+!/package-lock.json
+!/tsconfig.json
+
+etiquetas.html
+
+npm-debug.log*
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
